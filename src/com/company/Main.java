@@ -8,25 +8,9 @@ public class Main {
     private static LocalInnerClassButton btnPrint = new LocalInnerClassButton("Print");
 
     public static void main(String[] args) {
+//local class
 
-       /* Gearbox mcLaren = new Gearbox(6);//Inner non static class
-        mcLaren.operateClutch(true);
-        mcLaren.changeGear(1);
-
-        mcLaren.operateClutch(false);
-        System.out.println(mcLaren.wheelSpeed(1000));
-        mcLaren.changeGear(2);
-        System.out.println(mcLaren.wheelSpeed(3000));
-
-        mcLaren.operateClutch(true);
-        mcLaren.changeGear(3);
-        mcLaren.operateClutch(false);
-        System.out.println(mcLaren.wheelSpeed(6000));*/
-
-//we can create local class (defined in the method)that implements that onClickListener
-// we have defined and assign a instance of it to a button class
-
-            class ClickListener implements LocalInnerClassButton.OnClickListener{
+         /*   class ClickListener implements LocalInnerClassButton.OnClickListener{
 
                 public ClickListener(){//constructor
                     System.out.println("I've been attached");
@@ -36,9 +20,16 @@ public class Main {
                 public void onClick(String title) {
                     System.out.println(title + " was clicked.");
                 }
-            }
+            }*/
 
-            btnPrint.setOnClickListener(new ClickListener());
+//Anonymous class
+
+            btnPrint.setOnClickListener(new LocalInnerClassButton.OnClickListener() {
+                @Override
+                public void onClick(String title) {//we have to implement this method
+                    System.out.println(title + " was clicked");
+                }
+            });
             listen();
     }
 
@@ -52,8 +43,8 @@ public class Main {
                     quit = true;
                     break;
                 case 1:
-                    btnPrint.onClick();//is implemented from the @Override of upper interface
-                    break;
+                    btnPrint.onClick();//1.is implemented from the @Override of upper interface
+                    break;              //2. is implemented by anonymous class with in the brackets as a parameter
             }
         }
 //local class is applicable just for that block only. If we want to assign same object(several buttons on the screen several times)
